@@ -6,56 +6,39 @@ $status = "'" . $_POST['status'] . "'";
 $especie = "'" . $_POST['especie'] . "'";
 $sexo = "'" . $_POST['sexo'] . "'";
 
-//inicio upload
+//Inicio da verificação de Upload
 $uploadFile = $_FILES['uploadFile'];
+$nameFile = $uploadFile['name'];
 $pasta =  'uploadFiles/';
-$tamanho = 1024 * 1024 * 100 + 1024 * 1024 * 100;
+$tamanho = 10000000;
 
-  
-//Verifica se o arquivo é muito grande
+//Verifica tamanho
 if ($tamanho < $_FILES['uploadFile']['size']) {
 
-    echo "<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=http://localhost:82/desafioCeleritech/index.php>
+    $_SESSION['alerta'] = "
     <script type=\"text/javascript\">
     alert(\"O arquivo ultrapassa o limite de 10Mb.\")
     </script>";
-    die('verificação falhou');
+    header("Location: index.php");
 }
-//fim upload
+//Fim da verificação de Upload
+//Gravação
+if ($uploadFile['error']>1) {
+    print_r($uploadFile);
 
-if (move_uploaded_file($uploadFile['tmp_name'], $pasta . $uploadFile['name'])) {
-    //Upload efetuado com sucesso, exibe a mensagem
-    $sql = "INSERT INTO personagens (nome, status, especie, sexo, uploadFile, dataCadastro) VALUES ($nome,$status,$especie,$sexo,".$uploadFile['name'].", NOW())";
+    $sql = "INSERT INTO personagens (nome, status, especie, sexo, uploadFile, dataCadastro) VALUES ($nome,$status,$especie,$sexo, '' , NOW())";
+    $result = mysqli_query($connect, $sql);
+} else {
+
+    move_uploaded_file($uploadFile['tmp_name'], $pasta . $nameFile);
+    $sql = "INSERT INTO personagens (nome, status, especie, sexo, uploadFile, dataCadastro) VALUES ($nome,$status,$especie,$sexo, '$nameFile' , NOW())";
     $result = mysqli_query($connect, $sql);
 
-    echo "<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=http://localhost:82/desafioCeleritech/index.php>
-    <script type=\"text/javascript\">
-    alert(\"Personagem Cadastrado com sucesso!.\")
-    </script>";
-} else {
-    echo "<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=http://localhost:82/desafioCeleritech/index.php>
-    <script type=\"text/javascript\">
-    alert(\"Personagem não cadastrado.\")
-    </script>";
 }
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
-// $ret = 'sucess#';
-// if ($result < 1) {
-//     $ret = 'failed#';
-// }
-// echo $ret;
+//Fim da gravação
+//Mensagem
+$_SESSION['alerta'] = "
+<script type=\"text/javascript\">
+alert(\"Personagem Cadastrado com sucesso!\")
+</script>";
+header("Location: index.php");

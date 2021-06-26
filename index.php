@@ -1,4 +1,8 @@
-
+<?php session_start(); 
+ if (isset($_SESSION['alerta'])) {
+        echo $_SESSION['alerta'];
+        unset($_SESSION['alerta']);
+    } ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,8 +14,7 @@
 </head>
 
 <body>
-    <h1>Cadastrar um usuário</h1>
-
+    <h1>Cadastrar de Personagem</h1>
     <form method="POST" enctype="multipart/form-data" action="processa.php">
         Carregue uma imagem do personagem
         <input type="file" name="uploadFile"><br></br>
@@ -46,8 +49,3 @@
 
 </html>
 
-<script>
-
-
-
-</script>
