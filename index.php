@@ -11,6 +11,8 @@ $sexo = "";
 $status = "";
 $uploadImg = "";
 
+//Inicio da Recuperação
+
 if (isset($_GET["codigo"])) {
 
     $where = " WHERE (0=0) ";

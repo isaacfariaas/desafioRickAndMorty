@@ -12,7 +12,7 @@ $nameFile = $uploadFile['name'];
 $pasta =  'uploadFiles/';
 $tamanho = 10000000;
 
-//Verifica tamanho
+//Verifica tamanho de Upload
 if ($tamanho < $_FILES['uploadFile']['size']) {
 
     $_SESSION['alerta'] = "

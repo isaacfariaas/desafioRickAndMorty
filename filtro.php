@@ -4,13 +4,16 @@ if (isset($_SESSION['alerta'])) {
     unset($_SESSION['alerta']);
 }
 
-$parametrosTh = '';
+$parametrosTh = "";
 $uploadFile = "";
 $nome = "";
 $especie = "";
 $sexo = "";
 $status = "";
-$deletar = '';
+$deletar = "";
+
+//Início da busca
+
 if (isset($_GET["pesquisar"])) {
 
     $where = " WHERE (0=0) ";
@@ -31,20 +34,11 @@ if (isset($_GET["pesquisar"])) {
 
     $result = mysqli_query($connect, $query);
 
-
-    foreach ($result as $row) {
-        $codigo = $row['codigo'];
-        $uploadFile = '"uploadFiles/' . $row['uploadFile'] . '"';
-
-        $uploadFile = "<tr><td><img src=" . $uploadFile . "height=" . '50' . " width=" . '50' . "></td>";
-
-        $nome ="<td>" . "<a href=" . '"' . "index.php?codigo=" . $codigo . '"' . ">" . $row['nome']. "</td>";
-        $especie = "<td>" . $row['especie'] . "</td>";
-        $sexo = "<td>" .  $row['sexo'] . "</td>";
-        $status = "<td>" . $row['status'] . "</td>";
-        $deletar = '<td><a href="delete.php?codigo=' . $codigo . '">Deletar</a></td></tr>';
-        $parametrosTr = $uploadFile . $nome . $especie . $sexo . $status;
-    }
+    $parametrosTh = "<th style=" . "width:30px;" . ">Foto</th>
+                    <th style=" . "width:30px;" . ">Nome</th>
+                    <th style=" . "width:30px;" . ">Espécie</th>
+                    <th style=" . "width:30px;" . ">Gênero</th>
+                    <th style=" . "width:30px;" . ">Status</th>";
 }
 
 ?>
@@ -60,14 +54,16 @@ if (isset($_GET["pesquisar"])) {
 
 <body>
     <h1>Filtro de Personagem</h1>
-    <p>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <div class="form-group">
+            <label for="nome">Nome:</label><br>
+            <input type="text" name="nome" placeholder="Digite o nome" autocomplete="off" class="nome" id="nome"><br></br>
+        </div>
 
-        <label for="nome">Nome:</label><br>
-        <input type="text" name="nome" placeholder="Digite o nome" autocomplete="off" class="nome" id="nome"><br></br>
-
-        <label for="especie">Espécie:</label><br>
-        <input type="text" name="especie" placeholder="Digite o sua espécie" autocomplete="off" class="especie" id="especie"><br></br>
+        <div class="form-group">
+            <label for="especie">Espécie:</label><br>
+            <input type="text" name="especie" placeholder="Digite o sua espécie" autocomplete="off" class="especie" id="especie"><br></br>
+        </div>
 
         <input type="submit" name="pesquisar" value="Pesquisar" />
         <button><a href="index.php">Cadastrar</a></button><br></br>
@@ -75,24 +71,31 @@ if (isset($_GET["pesquisar"])) {
         <table class="tabelaFiltro">
             <thead>
                 <tr>
-                    <th style="min-width:30px;">Foto</th>
-                    <th style="min-width:30px;">Nome</th>
-                    <th style="min-width:30px;">Espécie</th>
-                    <th style="min-width:30px;">Gênero</th>
-                    <th style="min-width:30px;">Status</th>
+                    <?php echo $parametrosTh; ?>
                 </tr>
             </thead>
-            <?php echo $uploadFile;?>
-            <?php echo $nome;?>
-            <?php echo$especie;?>
-            <?php echo$sexo;?>
-            <?php echo$status;?>
-            <?php echo$deletar;?>
+            <tbody>
+                <?php
+                if (isset($_GET["pesquisar"])) {
+                    foreach ($result as $row) {
+                        echo '<tr>';
+                        echo '<td><img src=' . '"uploadFiles/' . $row['uploadFile'] . '"' . 'height=' . '50' .  'width=' . '50' .  '></td>';
+                        echo '<td><a href="index.php?codigo=' . $row['codigo'] . '">' . $row['nome'] . '</a></td>';
+                        echo '<td class="text-left">' . $row['especie'] . '</td>';
+                        echo '<td class="text-left">' . $row['sexo'] . '</td>';
+                        echo '<td class="text-left">' . $row['status'] . '</td>';
+                        echo '<td><a href="delete.php?codigo=' . $row['codigo'] . '">Deletar</a></td>';
+                        echo '</tr>';
+                    }
+                }
+                ?>
+            </tbody>
+            <hr>
         </table>
-        <hr>
+
 
     </form>
-    </p>
+
 
 </body>
 
