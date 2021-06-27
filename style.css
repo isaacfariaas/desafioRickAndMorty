@@ -1,0 +1,151 @@
+.padrao{
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    width: 30%;
+    
+}
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-image: url(rick.jpg);
+}
+form{
+    margin: 40px 0 40px;
+    text-align: center;
+}
+
+form label, form p,form table{
+    display: block;
+    font-size: 20px;
+    margin-bottom: 0 0 10px;
+    padding: 10px;
+}
+h1{
+    text-align: center;
+}
+.btnGravar{
+    text-decoration: none;
+    cursor: pointer;
+    width: 5%;
+    padding: 15px 0;
+    margin-right: 100px;
+    background: rgb(0, 88, 189);
+    color: white;
+    box-shadow: 3px 2px rgb(145, 145, 145);
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    transition: 0.5s all;
+}
+.btnGravar:hover{
+    background:  rgb(0, 71, 153);
+   
+}
+
+.btnGravar:active{
+    background:  rgb(0, 42, 90);
+    box-shadow: none;
+}
+
+.btnFiltro{
+    text-decoration: none;
+    cursor: pointer;
+    width:5%;
+    padding: 15px 30px;
+    background: rgb(189, 154, 0);
+    color: white;
+    box-shadow: 3px 2px rgb(145, 145, 145);
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    transition: 0.5s all;
+}
+.btnFiltro:hover{
+    background: rgb(153, 125, 0);
+   
+}
+
+.btnFiltro:active{
+    background: rgb(114, 93, 0);
+    box-shadow: none;
+}
+.btnPesquisar{
+    text-decoration: none;
+    cursor: pointer;
+    width: 5%;
+    padding: 15px 0;
+    margin-right: 100px;
+    background: rgb(0, 88, 189);
+    color: white;
+    box-shadow: 3px 2px rgb(145, 145, 145);
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    transition: 0.5s all;
+}
+.btnPesquisar:hover{
+    background:  rgb(0, 71, 153);
+   
+}
+
+.btnPesquisar:active{
+    background:  rgb(0, 42, 90);
+    box-shadow: none;
+}
+.btnCadastrar{
+    text-decoration: none;
+    cursor: pointer;
+    width:5%;
+    padding: 15px 15px;
+    background: rgb(189, 154, 0);
+    color: white;
+    box-shadow: 3px 2px rgb(145, 145, 145);
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    transition: 0.5s all;
+}
+.btnCadastrar:hover{
+    background: rgb(153, 125, 0);
+   
+}
+
+.btnCadastrar:active{
+    background: rgb(114, 93, 0);
+    box-shadow: none;
+}
+.btnDelete{
+    text-decoration: none;
+    cursor: pointer;
+    background: red;
+    color: white;
+    box-shadow: 3px 2px rgb(145, 145, 145);
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    transition: 1s all;
+}
+.btnNome{
+    text-decoration: none;
+    cursor: pointer;
+    color: blue;
+    font-weight: bold;
+}
+table{
+    margin: 20px 0 40px;
+    display: inline-block;
+    
+}
+thead{
+    background: #555555;
+    color: #555555;
+    font-weight: bold;
+}
+td, th{
+    border: 1px solid black;
+    padding: 8px 15px;
+    background-color: aliceblue;
+}
+
+
+

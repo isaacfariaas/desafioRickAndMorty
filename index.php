@@ -29,7 +29,7 @@ if (isset($_GET["codigo"])) {
         $especie = $row['especie'];
         $sexo = $row['sexo'];
         $status = $row['status'];
-        $uploadImg ="<img src=".'"'.'uploadFiles/'.$uploadFile.'"'." height=".'200'." width=".'200'.">";
+        $uploadImg = "<img src=" . '"' . 'uploadFiles/' . $uploadFile . '"' . " height=" . '200' . " width=" . '200' . ">";
     }
 }
 
@@ -41,47 +41,49 @@ if (isset($_GET["codigo"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
     <title>Cadastro Teste</title>
 </head>
 
 <body>
-    <h1>Cadastrar de Personagem</h1>
+    <h1>Cadastro de Personagem</h1>
     <form method="POST" enctype="multipart/form-data" action="processa.php">
-        <input type="hidden" name="codigo" value="<?php echo $codigo;?>" />
+        <input type="hidden" name="codigo" value="<?php echo $codigo; ?>" />
 
         <div class="form-group">
-            Carregue uma imagem do personagem
-            <input type="file" name="uploadFile" value="<?php echo $uploadFile; ?>"><br></br>
-            <p><?php echo $uploadImg;?></p>
+            <p><?php echo $uploadImg; ?></p>
         </div>
         <div class="form-group">
             <label for="nome">Nome</label><br>
-            <input type="text" name="nome" placeholder="Digite o seu nome" required autocomplete="off" value="<?php echo $nome ?>" class="nome" id="nome"><br></br>
+            <input type="text" name="nome" placeholder="Digite o seu nome" required autocomplete="off" value="<?php echo $nome ?>" class="padrao" id="nome">
         </div>
         <div class="form-group">
             <label for="status">Status</label><br>
-            <select name="status" id="status">
+            <select name="status" id="status" class="padrao">
                 <option value="">Selecione</option>
                 <option value="vivo" <?= ($status == 'vivo') ? 'selected' : '' ?>>Vivo</option>
                 <option value="morto" <?= ($status == 'morto') ? 'selected' : '' ?>>Morto</option>
                 <option value="desconhecido" <?= ($status == 'desconhecido') ? 'selected' : '' ?>>Desconhecido</option>
-            </select><br></br>
+            </select>
         </div>
         <div class="form-group">
             <label for="especie">Espécie</label><br>
-            <input type="text" name="especie" placeholder="Digite o sua espécie" value="<?php echo $especie ?>" autocomplete="off" required class="especie" id="especie"><br></br>
+            <input type="text" name="especie" placeholder="Digite o sua espécie" value="<?php echo $especie ?>" autocomplete="off" required class="padrao" id="especie">
         </div>
         <div class="form-group">
             <label for="sexo">Gênero Sexual</label><br>
-            <select name="sexo" id="sexo">
+            <select name="sexo" id="sexo" class="padrao">
                 <option value="">Selecione</option>
                 <option value="masculino" <?= ($sexo == 'masculino') ? 'selected' : '' ?>>Masculino</option>
                 <option value="feminino" <?= ($sexo == 'feminino') ? 'selected' : '' ?>>Feminino</option>
                 <option value="outro" <?= ($sexo == 'outro') ? 'selected' : '' ?>>Outro</option>
             </select><br></br>
+            Carregue uma imagem do personagem
+            <input type="file" name="uploadFile" class="padrao" value="<?php echo $uploadFile; ?>"><br></br>
         </div>
-        <button type="submit">Salvar</button>
-        <button><a href="filtro.php">Pesquisar</a></button>
+        <button type="submit" class="btnGravar">Gravar</button>
+        <a class="btnFiltro" href="filtro.php" style="text-decoration: none; color: white;">Filtro</a>
     </form>
 
 </body>
