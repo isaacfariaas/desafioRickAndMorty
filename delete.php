@@ -11,7 +11,7 @@ if ($id) {
 <script type=\"text/javascript\">
 alert(\"Personagem Deletado com sucesso!\")
 </script>";
-    header("Location: index.php");
+    header("Location: filtro.php");
   
 } else {
 
@@ -19,6 +19,7 @@ alert(\"Personagem Deletado com sucesso!\")
 <script type=\"text/javascript\">
 alert(\"Selecione um arquivo para deletar!\")
 </script>";
-    header("Location: index.php");
+    header("Location: filtro.php");
+    return;
 }
 //Fim da gravação

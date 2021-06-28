@@ -20,11 +20,16 @@ if ($tamanho < $_FILES['uploadFile']['size']) {
     alert(\"O arquivo ultrapassa o limite de 10Mb.\")
     </script>";
     header("Location: index.php");
+    return;
 }
 //Fim da verificação de Upload
 //Gravação
+echo $especie, $status;
+if ($especie=="'Humanoid'"&&$status=="''") {
+    header("Location: index.php");
+    return;
+}
 if ($uploadFile['error'] > 1) {
-    print_r($uploadFile);
 
     if ($id != 0) {
         $sql = "UPDATE personagens SET nome=$nome, status=$status, especie=$especie, sexo=$sexo WHERE codigo = $id";
